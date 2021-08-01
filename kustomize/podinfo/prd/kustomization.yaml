@@ -1,0 +1,15 @@
+namespace: podinfo-prd
+
+nameSuffix: -prd
+
+resources:
+  - ../base
+
+patches:
+- target:
+    name: podinfo
+    kind: Ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: podinfo-prd.localho.st

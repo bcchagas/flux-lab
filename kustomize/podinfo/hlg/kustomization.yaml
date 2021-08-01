@@ -1,0 +1,15 @@
+namespace: podinfo-hlg
+
+nameSuffix: -hlg
+
+resources:
+  - ../base
+
+patches:
+- target:
+    name: podinfo
+    kind: Ingress
+  patch: |-
+    - op: replace
+      path: /spec/rules/0/host
+      value: podinfo-hlg.localho.st
