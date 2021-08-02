@@ -148,7 +148,7 @@ local-path-storage   Active   70m
 
 ### Configuring the Continuous Delivery
 
-We will create a Flux [Kustomization](https://fluxcd.io/docs/components/kustomize/kustomization/) manifest for podinfo and nginx. This configures Flux to build and apply the [kustomize](https://github.com/stefanprodan/podinfo/tree/master/kustomize) directory.
+We will create a Flux [Kustomization](https://fluxcd.io/docs/components/kustomize/kustomization/) manifests for podinfo and nginx. This configures Flux to build and apply the [kustomize](.kustomize/) directory.
 
 **nix**
 
