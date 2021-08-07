@@ -34,7 +34,7 @@ flux-lab
 
 The kustomize folder contains the two applications we will be deploying: nginx and podinfo. The nginx folder contains a Kubernetes Kustomize definition that references a Kubernetes manifest hosted on Github. The podinfo also contains a Kubernetes Kustomize definition but it references local Kubernetes manifests hosted within this same repo.
 
-We'll started by creating aKubernetes cluster and deploying the applications as is. Next, we'll add Flux to watch the repository for changes and submit then to the cluster.
+We'll started by creating a Kubernetes cluster and deploying the applications as is. Next, we'll add Flux to watch the repository for changes and submit then to the cluster.
 
 ### Getting started
 
@@ -207,6 +207,9 @@ EOF
 Commit and push the changes to the  repository:
 
 ```sh
+# Pull the changes Flux has added in the bootstrap step
+git pull
+
 git add -A && git commit -m "Add podinfo Kustomization"
 git push
 ```
@@ -246,7 +249,7 @@ flux-lab
             └── kustomization.yaml
 ```
 
-Check the Flux custom resource definitions you just created wit
+Check the Flux custom resource definitions you just created
 
 ```bash
 # Listing resources with kubectl
