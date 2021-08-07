@@ -6,9 +6,9 @@ You'll need [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-lin
 
 ### Introduction
 
-In this step-by-step you'll create a local Kubernetes cluster which will host 2 applications: the [Nginx Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) to handle the incoming connections to the cluster and the [podinfo](https://github.com/stefanprodan/podinfo) application which is a lightweight go web application.
+In this step-by-step you'll create a local Kubernetes cluster which will host 2 applications: the [Nginx Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/) to handle incoming connections to the cluster and the [podinfo](https://github.com/stefanprodan/podinfo) application which is a lightweight go web application.
 
-The cluster will be installed in a GitOps manner using FluxCD to make sure the definition of the applications in this repo match what is currently running on the cluster.
+The cluster will be installed in a GitOps manner using FluxCD (v2) to make sure application definitions on this repo match what is currently running on the cluster.
 
 The initial repo structure is as follow:
 
@@ -67,6 +67,12 @@ Run the commands below to the deploy the nginx ingress controller and the podinf
 ```bash
 # Install nginx
 kubectl apply -k kustomize/nginx
+
+# Wait for Ingress Nginx to be ready
+kubectl wait --namespace ingress-nginx \
+  --for=condition=ready pod \
+  --selector=app.kubernetes.io/component=controller \
+  --timeout=90s
 
 # Install pod
 kubectl apply -k kustomize/podinfo
