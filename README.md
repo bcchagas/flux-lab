@@ -156,7 +156,7 @@ local-path-storage   Active   70m
 
 We will create a Flux [Kustomization](https://fluxcd.io/docs/components/kustomize/kustomization/) manifests for podinfo and nginx. This configures Flux to build and apply the [kustomize](./kustomize/) directory.
 
-**nix**
+**nginx**
 
 ```sh
 # Create folder for the nginx
