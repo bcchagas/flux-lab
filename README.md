@@ -266,14 +266,34 @@ kubectl describe kustomization podinfo -n flux-system
 kubectl describe gitrepositories flux-system -n flux-system
 ```
 
+### Flux in Action
+
+To see flux in action, go ahead and delete the pod info application an see Flux recreate it whithin 1 min
+
+```
+# Delete podinfo deployment
+kubectl delete deploy podinfo-hlg -n podinfo-hlg
+
+# See the deployment being Terminated and Recreated
+kubectl get deploy -n podinfo-hlg -w
+
+# Ctrl+C to exit  
+```
+
 ### Clean up
 
 To uninstall Flux run
 
 ```bash
-flux uninstall
+flux uninstall --keep-namespace
+```
+
+### Redeploy Flux on the cluster
+
+To reinstall Flux on the cluster you can run `flux bootstrap` or you could apply the Kustomize manifest for Flux:
+
+```
+kubectl apply -k ./fluxcd/flux-system/kustomization.yaml
 ```
 
 Delete the PAT you created. It will automatically delete the Deploy Key it generated for the cluster (Github will tell it as a warning message)
-
-You can as easily reinstall Flux running the bootstrap command again. Give it a try! 
